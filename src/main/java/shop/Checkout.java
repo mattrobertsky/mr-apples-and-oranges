@@ -1,7 +1,6 @@
 package main.java.shop;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,8 +9,6 @@ import main.java.shop.products.Orange;
 
 public class Checkout {
   
-  public static final MathContext MC = new MathContext(2);
-
   /**
    * Adds the Apples and Oranges and applies offers to return cost
    * @param basket string array of items  
@@ -27,7 +24,7 @@ public class Checkout {
   private BigDecimal costOfItems(int quantity, int offerQuantity, int offerActual, BigDecimal cost) {
     int remainder = quantity % offerQuantity;
     int effectiveQuantity = (((quantity - remainder) / offerQuantity) * offerActual) + remainder;
-    return cost.multiply(new BigDecimal(effectiveQuantity), MC).setScale(2, BigDecimal.ROUND_HALF_DOWN);
+    return cost.multiply(new BigDecimal(effectiveQuantity)).setScale(2, BigDecimal.ROUND_HALF_DOWN);
   }
   
   private int countItemsOfType(String[] basket, String type) {
