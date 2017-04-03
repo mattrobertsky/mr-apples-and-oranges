@@ -12,23 +12,20 @@ public class ThreeForTwoOffer implements MultibuyOffer {
     return 2;
   }
 
-  private static ThreeForTwoOffer singleton;
-  
-  private ThreeForTwoOffer() {
-    
+  private static class BillPughThreadsafeSingletonHelper {
+    private static final ThreeForTwoOffer INSTANCE = new ThreeForTwoOffer();
   }
-  
+
+  private ThreeForTwoOffer() {
+  }
+
   /**
    * gets the singleton instance of this class
    * 
    * @return ThreeForTwoOffer
    */
   public static ThreeForTwoOffer getInstance() {
-    if (singleton == null) {
-      return new ThreeForTwoOffer();
-    } else {
-      return singleton;
-    }
+    return BillPughThreadsafeSingletonHelper.INSTANCE;
   }
 
 }

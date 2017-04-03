@@ -12,10 +12,11 @@ public class TwoForOneOffer implements MultibuyOffer {
     return 1;
   }
 
-  private static TwoForOneOffer singleton;
-
   private TwoForOneOffer() {
+  }
 
+  private static class BillPughSingletonHelper {
+    private static final TwoForOneOffer INSTANCE = new TwoForOneOffer();
   }
 
   /**
@@ -24,11 +25,7 @@ public class TwoForOneOffer implements MultibuyOffer {
    * @return TwoForOneOffer
    */
   public static TwoForOneOffer getInstance() {
-    if (singleton == null) {
-      return new TwoForOneOffer();
-    } else {
-      return singleton;
-    }
+    return BillPughSingletonHelper.INSTANCE;
   }
 
 }
